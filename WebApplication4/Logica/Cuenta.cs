@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication4.Logica {
     public class Cuenta {
+        private int idCuenta;
         private decimal saldo;
         private decimal interesesAcumulados;
         private int diaCorte;
@@ -16,8 +17,10 @@ namespace WebApplication4.Logica {
         public int DiaCorte { get => diaCorte; set => diaCorte = value; }
         public decimal InteresesAcumulados { get => interesesAcumulados; set => interesesAcumulados = value; }
         public decimal Saldo { get => saldo; set => saldo = value; }
+        public int IdCuenta { get => idCuenta; set => idCuenta = value; }
 
         Cuenta() {
+            IdCuenta = 0;
             Saldo = 0;
             InteresesAcumulados = 0;
             DiaCorte = 0;
@@ -25,7 +28,8 @@ namespace WebApplication4.Logica {
             TipoCuenta = "";
         }
 
-        Cuenta(decimal pSaldo, decimal pIntAcum, int pDiaCorte, string pFechaCreacion) {
+        Cuenta(int pIdCuenta, decimal pSaldo, decimal pIntAcum, int pDiaCorte, string pFechaCreacion) {
+            IdCuenta = pIdCuenta;
             Saldo = pSaldo;
             InteresesAcumulados = pIntAcum;
             DiaCorte = pDiaCorte;
