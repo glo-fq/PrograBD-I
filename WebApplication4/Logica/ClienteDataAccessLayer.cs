@@ -18,13 +18,34 @@ namespace WebApplication4.Logica {
                 SqlDataReader rdr = cmd.ExecuteReader();
 
                 while (rdr.Read()) {
-                    Cliente cliente = new Cliente(Convert.ToInt32(rdr["Id"]), rdr["nombre"].ToString(), rdr["password"].ToString());
+                    Cliente cliente = new Cliente(Convert.ToInt32(rdr["Id"]), rdr["nombre"].ToString(), rdr["password"].ToString(), false);
 
                     listaClientes.Add(cliente);
                 }
                 con.Close();
             }
             return listaClientes;
+        }
+
+        public bool VerificarCredencialesAdmin(string pNombre, string pClave) {
+            int valorVerificacion = 2; //Se le pone un valor que no sea 1 o -1 para no confundir con lo que se recibe
+            using (SqlConnection con = new SqlConnection(connectionString)) {
+                SqlCommand cmd = new SqlCommand("CASP_LoginAdmin", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                cmd.Parameters.Add("@retValue", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.ReturnValue;
+
+                while (rdr.Read()) {
+                    valorVerificacion = (int)cmd.Parameters["@retValue"].Value;
+                }
+
+                con.Close();
+
+            }
+            return (valorVerificacion == 1);
         }
     }
 }

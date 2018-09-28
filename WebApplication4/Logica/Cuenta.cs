@@ -9,8 +9,6 @@ namespace WebApplication4.Logica {
         private decimal interesesAcumulados;
         private int diaCorte;
         private string fechaCreacion;
-        //Esto se pone?
-        //private string clienteDocId;
         private string tipoCuenta;
 
         public string FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
