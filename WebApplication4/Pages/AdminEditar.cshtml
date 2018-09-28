@@ -1,0 +1,549 @@
+﻿@page
+@model WebApplication4.Pages.AdminEditarModel
+@{
+
+    ViewData["Title"] = "Editar";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+
+
+
+
+
+    //Datos tipos de cuenta: 
+    //nombre que no esta aqui, tasa interes, saldo minimo, multa sal min,
+    //multa sal negativo, cargo por servicio mensual, cant max op manual, cant max op ATM, multa op manual, multa op ATM
+    string[] datosTipoCuenta1 = { "11", "$9000", "$100", "$100", "$3500", "10", "10", "$100", "$100" };
+    string[] datosTipoCuenta2 = { "11", "$8500", "$150", "$150", "$3000", "12", "12", "$80", "$80" };
+    string[] datosTipoCuenta3 = { "15", "$9750", "$150", "$150", "$3250", "8", "10", "$120", "$120" };
+
+    //Datos cuentas:
+    //ID cuenta, saldo, intereses acumulados, dia de corte, fecha creacion, tipo cuenta
+    string[] datosCuenta1 = { "331", "$3800", "$100", "22", "22/12/17", "Tipo #1" };
+    string[] datosCuenta2 = { "116", "$5800", "$80", "8", "8/1/18", "Tipo #2" };
+    string[] datosCuenta3 = { "218", "$8900", "$160", "14", "14/1/18", "Tipo #1" };
+}
+
+@*Navegador*@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="/Index">Inicio sesión</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Contact">Portal admin</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Editar</li>
+    </ol>
+</nav>
+
+<h2>@ViewData["Title"]</h2>
+
+@*Estructura tipo acordeon para el display*@
+<div class="accordion" id="accordionEditar">
+    @*Tipos de cuenta*@
+    <div class="card">
+        <div class="card-header" id="headingTiposCuenta">
+            <h5 class="mb-0">
+                <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTiposCuenta" aria-expanded="false" aria-controls="collapseTiposCuenta">
+                    Tipos de Cuenta
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseTiposCuenta" class="collapse" aria-labelledby="headingTiposCuenta" data-parent="#accordionEditar">
+            <div class="card-body">
+                @*Tabla info tipos de cuenta*@
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Tasa interés anual</th>
+                            <th scope="col">Saldo mínimo</th>
+                            <th scope="col">Multa saldo mínimo</th>
+                            <th scope="col">Multa saldo negativo</th>
+                            <th scope="col">Cargo Servicio Mensual</th>
+                            <th scope="col">Cant Max Op Manual</th>
+                            <th scope="col">Cant Max Op ATM</th>
+                            <th scope="col">Multa Op Manual</th>
+                            <th scope="col">Multa Op ATM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.tipoCuenta) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TasaInteresAnual)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SaldoMinimo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MultaSaldoMinimo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MultaSaldoNegativo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CargoPorServicioMensual)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CantMaxOpManual)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CantMaxOpATM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MultaOpManual)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MultaOpATM)
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+                @*Acordeon opciones de CRUD tipos de cuenta*@
+                <div id="accordionCRUDTipos">
+                    @*Agregar tipo de cuenta*@
+                    <div class="card">
+                        <div class="card-header" id="headingAgregarTipo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAgregarTipo" aria-expanded="true" aria-controls="collapseAgregarTipo">
+                                    Agregar tipo de cuenta
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseAgregarTipo" class="collapse" aria-labelledby="headingAgregarTipo" data-parent="#accordion">
+                            <div class="card-body">
+                                <form>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input asp-for="tipoCuentaAgregado.Nombre" type="text" class="form-control m-3" id="formAgregarNombreTipoCuenta" name="formAgregarNombreTipoCuenta" placeholder="nombre tipo de cuenta">
+                                            <span asp-validation-for="tipoCuentaAgregado.Nombre" class="text-danger"></span>
+
+                                            <input type="text" asp-for="tipoCuentaAgregado.TasaInteresAnual" class="form-control m-3" id="formAgregarTasa" name="formAgregarTasa" placeholder="tasa interés anual" />
+                                            <span asp-validation-for="tipoCuentaAgregado.TasaInteresAnual" class="text-danger"></span>
+
+                                            <input type="text" asp-for="tipoCuentaAgregado.SaldoMinimo" class="form-control m-3" id="formAgregarSM" name="formAgregarSM" placeholder="saldo mínimo" />
+                                            <span asp-validation-for="tipoCuentaAgregado.SaldoMinimo" class="text-danger"></span>
+
+                                            <input type="text" asp-for="tipoCuentaAgregado.MultaSaldoMinimo" class="form-control m-3" id="formAgregarMSM" name="formAgregarMSM" placeholder="multa saldo mínimo" />
+                                            <span asp-validation-for="tipoCuentaAgregado.MultaSaldoMinimo" class="text-danger"></span>
+
+                                            <input type="text" asp-for="tipoCuentaAgregado.MultaSaldoNegativo" class="form-control m-3" id="formAgregarMSN" name="formAgregarMSN" placeholder="multa saldo negativo" />
+                                            <span asp-validation-for="tipoCuentaAgregado.MultaSaldoNegativo" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" asp-for="tipoCuentaAgregado.CargoPorServicioMensual" class="form-control m-3" id="formAgregarCSM" name="formAgregarCSM" placeholder="cargo servicio mensual" />
+                                            <span asp-validation-for="tipoCuentaAgregado.CargoPorServicioMensual" class="text-danger"></span>
+
+                                            <input type="text" asp-for="tipoCuentaAgregado.CantMaxOpManual" class="form-control" id="formAgregarCMOM" name="formAgregarCMOM" placeholder="cantidad max op manual" />
+                                            <span asp-validation-for="tipoCuentaAgregado.CantMaxOpManual" class="text-danger"></span>
+
+                                            <input type="text" asp-for="tipoCuentaAgregado.CantMaxOpATM" class="form-control" id="formAgregarCMOA" name="formAgregarCMOA" placeholder="cantidad max op ATM" />
+                                            <span asp-validation-for="tipoCuentaAgregado.CantMaxOpATM" class="text-danger"></span>
+
+                                            <input type="text" asp-for="tipoCuentaAgregado.MultaOpManual" class="form-control" id="formAgregarMOM" name="formAgregarMOM" placeholder="multa op manual" />
+                                            <span asp-validation-for="tipoCuentaAgregado.MultaOpManual" class="text-danger"></span>
+
+                                            <input type="text" asp-for="tipoCuentaAgregado.MultaOpATM" class="form-control" id="formAgregarMOA" name="formAgregarMOA" placeholder="multa op ATM" />
+                                            <span asp-validation-for="tipoCuentaAgregado.MultaOpATM" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                        
+                                    <input m-3 class="btn btn-success" type="submit" asp-page-handler="AddTipoCuenta" id="btnAgregarTipoCuenta" value="Agregar" name="btnAgregarTipoCuenta" />
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Editar tipo de cuenta*@
+                    <div class="card">
+                        <div class="card-header" id="headingEditarTipo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEditarTipo" aria-expanded="false" aria-controls="collapseEditarTipo">
+                                    Editar tipo de cuenta
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseEditarTipo" class="collapse" aria-labelledby="headingEditarTipo" data-parent="#accordionCRUDTipos">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <form>
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select class="form-control" id="seleccionEditarTipoCuenta">
+                                                    @foreach (var item in Model.tipoCuenta)
+                                                    {
+                                                        <option>@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                                    }
+                                                </select>
+                                                <input type="text" class="form-control m-3" id="formEditarTasa" placeholder="tasa interés anual" />
+                                                <input type="text" class="form-control m-3" id="formEditarSM" placeholder="saldo mínimo" />
+                                                <input type="text" class="form-control m-3" id="formEditarMSM" placeholder="multa saldo mínimo" />
+                                                <input type="text" class="form-control m-3" id="formEditarMSN" placeholder="multa saldo negativo" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control m-3" id="formEditarCSM" placeholder="cargo servicio mensual" />
+                                                <input type="text" class="form-control" id="formEditarCMOM" placeholder="cantidad max op manual" />
+                                                <input type="text" class="form-control" id="formEditarCMOA" placeholder="cantidad max op ATM" />
+                                                <input type="text" class="form-control" id="formEditarMOM" placeholder="multa op manual" />
+                                                <input type="text" class="form-control" id="formEditarMOA" placeholder="multa op ATM" />
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <button m-3 class="btn btn-primary" type="submit">Editar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Eliminar tipo de cuenta*@
+                    <div class="card">
+                        <div class="card-header" id="headingEliminarTipo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEliminarTipo" aria-expanded="false" aria-controls="collapseEliminarTipo">
+                                    Eliminar tipo de cuenta
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseEliminarTipo" class="collapse" aria-labelledby="headingEliminarTipo" data-parent="#accordionCRUDTipos">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <form class="form-inline">
+                                        <select class="form-control" id="seleccionEliminarTipoCuenta">
+                                            @foreach (var item in Model.tipoCuenta) {
+                                                <option>@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                            }
+                                        </select>
+                                        <button m-3 class="btn btn-danger" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Clientes*@
+    <div class="card">
+        <div class="card-header" id="headingClientes">
+            <h5 class="mb-0">
+                <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="false" aria-controls="collapseClientes">
+                    Clientes
+                </button>
+            </h5>
+        </div>
+        <div id="collapseClientes" class="collapse" aria-labelledby="headingClientes" data-parent="#accordionEditar">
+            <div class="card-body">
+                @*Tabla clientes*@
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.cliente) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Clave)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                @*CRUD clientes*@
+                <div id="accordionCRUDClientes">
+                    @*Agregar cliente*@
+                    <div class="card">
+                        <div class="card-header" id="headingAgregarCliente">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAgregarCliente" aria-expanded="true" aria-controls="collapseAgregarCliente">
+                                    Agregar cliente
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseAgregarCliente" class="collapse" aria-labelledby="headingAgregarCliente" data-parent="#accordionCRUDClientes">
+                            <div class="card-body">
+                                <form>
+                                    <input type="text" class="form-control m-3" id="formAgregarNombreCliente" placeholder="nombre cliente" />
+                                    <input type="text" class="form-control m-3" id="formAgregarPasswordCliente" placeholder="password cliente" />
+                                    <button id="btnAgregarCliente" m-3 class="btn btn-success" type="submit">Agregar</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Editar cliente*@
+                    <div class="card">
+                        <div class="card-header" id="headingEditarCliente">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEditarCliente" aria-expanded="false" aria-controls="collapseEditarCliente">
+                                    Editar cliente
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseEditarCliente" class="collapse" aria-labelledby="headingEditarCliente" data-parent="#accordionCRUDClientes">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <form>
+                                        <select class="form-control" id="seleccionEditarCliente">
+                                            <option>Cliente 331</option>
+                                            <option>Cliente 243</option>
+                                            <option>Cliente 161</option>
+                                        </select>
+                                        <input type="text" class="form-control m-3" id="formAgregarNombreCliente" placeholder="nombre cliente" />
+                                        <input type="text" class="form-control m-3" id="formAgregarPasswordCliente" placeholder="password cliente" />
+                                        <button id="btnEditarCliente" m-3 class="btn btn-primary" type="submit">Editar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Eliminar cliente*@
+                    <div class="card">
+                        <div class="card-header" id="headingEliminarCliente">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEliminarCliente" aria-expanded="false" aria-controls="collapseEliminarCliente">
+                                    Eliminar cliente
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseEliminarCliente" class="collapse" aria-labelledby="headingEliminarCliente" data-parent="#accordionCRUDClientes">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <form class="form-inline">
+                                        <select class="form-control" id="seleccionEliminarClientes">
+                                            <option>Cliente 331</option>
+                                            <option>Cliente 243</option>
+                                            <option>Cliente 161</option>
+                                        </select>
+                                        <button id="btnEliminarCliente" m-3 class="btn btn-danger" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*Cuentas*@
+    <div class="card">
+        <div class="card-header" id="headingCuentas">
+            <h5 class="mb-0">
+                <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseCuentas" aria-expanded="false" aria-controls="collapseCuentas">
+                    Cuentas
+                </button>
+            </h5>
+        </div>
+        <div id="collapseCuentas" class="collapse" aria-labelledby="headingCuentas" data-parent="#accordionEditar">
+            <div class="card-body">
+                @*Tabla cuentas*@
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID Cliente</th>
+                            <th scope="col">Saldo</th>
+                            <th scope="col">Intereses acumulados</th>
+                            <th scope="col">Día corte</th>
+                            <th scope="col">Fecha creación</th>
+                            <th scope="col">Tipo cuenta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach (var dato in datosCuenta1)
+                            {
+                                <td>@dato</td>
+                            }
+                        </tr>
+                        <tr>
+                            @foreach (var dato in datosCuenta2)
+                            {
+                                <td>@dato</td>
+                            }
+                        </tr>
+                        <tr>
+                            @foreach (var dato in datosCuenta3)
+                            {
+                                <td>@dato</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+
+                @*CRUD cuentas*@
+                <div id="accordionCRUDCuentas">
+                    @*Agregar cuenta*@
+                    <div class="card">
+                        <div class="card-header" id="headingAgregarCuenta">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseAgregarCuenta" aria-expanded="true" aria-controls="collapseAgregarCuenta">
+                                    Agregar cuenta
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseAgregarCuenta" class="collapse" aria-labelledby="headingAgregarCuenta" data-parent="#accordionCRUDCuentas">
+                            <div class="card-body">
+                                <form>
+                                    <input type="text" class="form-control m-3" id="formAgregarSaldoCuenta" placeholder="saldo" />
+                                    <input type="text" class="form-control m-3" id="formAgregarInteresesCuenta" placeholder="intereses acumulados" />
+                                    <input type="text" class="form-control m-3" id="formAgregarDiaCorteCuenta" placeholder="día de corte" />
+                                    <input type="text" class="form-control m-3" id="formAgregarFechaCreacionCuenta" placeholder="fecha creación" />
+                                    <select class="form-control" id="seleccionTipoCuentaAgregarCuenta">
+                                        <option>Tipo cuenta #1</option>
+                                        <option>Tipo cuenta #2</option>
+                                        <option>Tipo cuenta #3</option>
+                                    </select>
+                                    <button id="btnAgregarCuenta" name="btnAgregarCuenta"m-3 class="btn btn-success" type="submit">Agregar</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Editar cuenta*@
+                    <div class="card">
+                        <div class="card-header" id="headingEditarCuenta">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEditarCuenta" aria-expanded="false" aria-controls="collapseEditarCuenta">
+                                    Editar cuenta
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseEditarCuenta" class="collapse" aria-labelledby="headingEditarCuenta" data-parent="#accordionCRUDCuentas">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <form>
+                                        <select class="form-control" id="seleccionEditarCuenta">
+                                            <option>Cuenta 222</option>
+                                            <option>Cuenta 131</option>
+                                            <option>Cuenta 204</option>
+                                        </select>
+                                        <input type="text" class="form-control m-3" id="formEditarSaldoCuenta" placeholder="saldo" />
+                                        <input type="text" class="form-control m-3" id="formEditarInteresesCuenta" placeholder="intereses acumulados" />
+                                        <input type="text" class="form-control m-3" id="formEditarDiaCorteCuenta" placeholder="día de corte" />
+                                        <input type="text" class="form-control m-3" id="formEditarFechaCreacionCuenta" placeholder="fecha creación" />
+                                        <select class="form-control" id="seleccionTipoCuentaEditarCuenta">
+                                            <option>Tipo cuenta #1</option>
+                                            <option>Tipo cuenta #2</option>
+                                            <option>Tipo cuenta #3</option>
+                                        </select>
+                                        <button id="btnEditarCuenta" name="btnEditarCuenta" m-3 class="btn btn-primary" type="submit">Editar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Eliminar cuenta*@
+                    <div class="card">
+                        <div class="card-header" id="headingEliminarCuenta">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEliminarCuenta" aria-expanded="false" aria-controls="collapseEliminarCuenta">
+                                    Eliminar cuenta
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseEliminarCuenta" class="collapse" aria-labelledby="headingEliminarCuenta" data-parent="#accordionCRUDCuentas">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <form class="form-inline">
+                                        <select class="form-control" id="seleccionEliminarCuentas">
+                                            <option>Cuenta 331</option>
+                                            <option>Cuenta 243</option>
+                                            <option>Cuenta 161</option>
+                                        </select>
+                                        <button id="btnEliminarCuenta" name="btnEliminarCuenta" m-3 class="btn btn-danger" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Tabla movimientos realizados*@
+    <div class="card">
+        <div class="card-header" id="headingMovimientos">
+            <h5 class="mb-0">
+                <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseMovimientos" aria-expanded="false" aria-controls="collapseMovimientos">
+                    Movimientos
+                </button>
+            </h5>
+        </div>
+        <div id="collapseMovimientos" class="collapse" aria-labelledby="headingMovimientos" data-parent="#accordionEditar">
+            <div class="card-body">
+                @*Tabla de informacion de movimientos*@
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Valor antes</th>
+                            <th scope="col">Valor después</th>
+                            <th scope="col">IP</th>
+                            <th scope="col">Timestamp</th>
+                            <th scope="col">Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Agregar tipo de cuenta</th>
+                            <td>-</td>
+                            <td>Cuenta ahorros</td>
+                            <td>1.0.0</td>
+                            <td>2/1/2018 22:30:25</td>
+                            <td>admin</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Eliminar tipo de cuenta</th>
+                            <td>Cuenta cliente</td>
+                            <td>-</td>
+                            <td>127.0.0</td>
+                            <td>1/1/2018 16:00:45</td>
+                            <td>andreslopez</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Cambiar identificación usuario</th>
+                            <td>danieeldiaz</td>
+                            <td>danieldiaz</td>
+                            <td>127.0.0</td>
+                            <td>1/1/2018 14:12:22</td>
+                            <td>andreslopez</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

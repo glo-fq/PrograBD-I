@@ -1,0 +1,107 @@
+﻿@page
+@model WebApplication4.Pages.InfoClienteModel
+@using WebApplication4.Logica;
+    @{
+
+
+        ViewData["Title"] = "Información actual cliente";
+        Layout = "~/Pages/Shared/_Layout.cshtml";
+
+        //Variables datos del cliente
+        var saldoActual = 520.35;
+        var intereses = 20.50;
+        var diaCorte = 20;
+        var fechaCreacion = "20/2/2018";
+
+        //Movimientos del cliente
+        string[] movimiento1 = { "Compras", "3/9/2018", "-$500", "Compra tienda en línea" };
+        string[] movimiento2 = { "Compras", "3/9/2018", "-$200", "Compra restaurante comida peruana" };
+        string[] movimiento3 = { "Depósito manual", "5/9/2018", "+$100", "Depósito manual" };
+    }
+
+    @*Navegador*@
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-page="/Index">Inicio sesión</a></li>
+            <li class="breadcrumb-item"><a asp-page="/About">Portal cliente</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Información actual</li>
+        </ol>
+    </nav>
+
+    <h2>@ViewData["Title"]</h2>
+
+    @*Datos cliente*@
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action active">Datos</a>
+        <a class="list-group-item list-group-item-action">
+            Saldo actual:
+            <p class="text-right">$@saldoActual</p>
+        </a>
+        <a class="list-group-item list-group-item-action">
+            Intereses acumulados:
+            <p class="text-right">$@intereses</p>
+        </a>
+        <a class="list-group-item list-group-item-action">
+            Día de corte:
+            <p class="text-right">@diaCorte de cada mes</p>
+        </a>
+        <a class="list-group-item list-group-item-action">
+            Fecha creación:
+            <p class="text-right">@fechaCreacion</p>
+        </a>
+
+    </div>
+
+    <div class="accordion" id="accordionMovimientos">
+        @*Movimientos*@
+        <div class="card">
+            <div class="card-header" id="headingMovimientos">
+                <h5 class="mb-0">
+                    <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseMovimientos" aria-expanded="false" aria-controls="collapseMovimientos">
+                        Movimientos
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseMovimientos" class="collapse" aria-labelledby="headingMovimientos" data-parent="#accordionMovimientos">
+                <div class="card-body">
+                    @*Tabla info movimientos*@
+                    <table id="tablaMovimientosCliente" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo Movimiento</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Monto</th>
+                                <th scope="col">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var dato in movimiento1)
+                                {
+                                    <td>@dato</td>
+                                }
+                            </tr>
+                            <tr>
+                                @foreach (var dato in movimiento2)
+                                {
+                                    <td>@dato</td>
+                                }
+                            </tr>
+                            <tr>
+                                @foreach (var dato in movimiento3)
+                                {
+                                    <td>@dato</td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+

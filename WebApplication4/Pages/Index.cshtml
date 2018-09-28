@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+@{
+    @*@using WebApplication4.Logica;
+    ClienteDataAccessLayer clientesDAL = new ClienteDataAccessLayer();
+    List < Cliente > clientes = clientesDAL.GetAllClientes();*@
+
+
+    ViewData["Title"] = "Inicio de sesión";
+}
+
+@*Navegación*@
+<nav aria-label="breadcrumb" m-3>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Inicio sesión</li>
+    </ol>
+</nav>
+
+@*Inicio sesión*@
+<div class="login">
+    <div class="form">
+        <form class="login-form">
+            <input type="text" placeholder="identificación" name="uname" required />
+            <input type="password" placeholder="clave" name="psw" required />
+            <button id="btnLogin" type="submit">iniciar sesión</button>
+            <button id="btnClientes" asp-page="/About">Cliente</button>
+            <button id="btnAdmin" asp-page="/Contact">Admin</button>
+
+        </form>
+    </div>
+</div>
+
+
+@*<script>
+    document.getElementById("myBtn").addEventListener("click", function() *@

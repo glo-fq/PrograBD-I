@@ -1,0 +1,150 @@
+﻿@page
+@model WebApplication4.Pages.ConsultasAdminModel
+@{
+    ViewData["Title"] = "Otras consultas";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@*Navegador*@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="/Index">Inicio sesión</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Contact">Portal admin</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Otras consultas</li>
+    </ol>
+</nav>
+
+<h2>@ViewData["Title"]</h2>
+
+@*Acordeon para las consultas*@
+<div class="accordion" id="accordionConsultas">
+    @*Movimentos*@
+    <div class="card">
+        <div class="card-header" id="headingMovimientos">
+            <h5 class="mb-0">
+                <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseMovimientos" aria-expanded="false" aria-controls="collapseMovimientos">
+                    Movimientos por mes
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseMovimientos" class="collapse" aria-labelledby="headingMovimientos" data-parent="#accordionConsultas">
+            <div class="card-body">
+                <form>
+                    <p>
+                        Rango:
+                        <div class="input-group">
+                            <input id="mesInicioMovimientos" type="date" placeholder="mes de inicio" />
+                            <input id="mesFinMovimientos" type="date" placeholder="mes final" />
+                            <input id="btnBuscarMovimientos" class="btn btn-success btn-outline" type="submit" value="Buscar">
+                        </div>
+                    </p>
+                </form>
+                
+                
+
+                @*Tabla de informacion de movimientos*@
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Saldo promedio</th>
+                            <th scope="col">Saldo mínimo</th>
+                            <th scope="col">Cant. movimientos</th>
+                            <th scope="col">Promedio movimientos</th>
+                            <th scope="col">Cant. multas</th>
+                            <th scope="col">Suma multas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">128</th>
+                            <td>$4000</td>
+                            <td>$20</td>
+                            <td>800</td>
+                            <td>12.5</td>
+                            <td>3</td>
+                            <td>$30</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">215</th>
+                            <td>$3800</td>
+                            <td>$18</td>
+                            <td>787</td>
+                            <td>15.6</td>
+                            <td>4</td>
+                            <td>$35</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">223</th>
+                            <td>$3550</td>
+                            <td>$18</td>
+                            <td>678</td>
+                            <td>12.2</td>
+                            <td>6</td>
+                            <td>$60</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @*Cuentas con mayor volumen*@
+    <div class="card">
+        <div class="card-header" id="headingVolumen">
+            <h5 class="mb-0">
+                <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseVolumen" aria-expanded="false" aria-controls="collapseVolumen">
+                    Cuentas con mayor volumen
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseVolumen" class="collapse" aria-labelledby="headingVolumen" data-parent="#accordionConsultas">
+            <div class="card-body">
+                <form>
+                    <p>
+                        Rango:
+                        <div class="input-group">
+                            <input id="mesInicioVolumen" type="date" placeholder="mes de inicio" />
+                            <input id="mesFinVolumen" type="date" placeholder="mes final" />
+                            <input id="btnBuscarVolumen" class="btn btn-success btn-outline" type="submit" value="Buscar">
+                        </div>
+                    </p>
+                </form>
+
+                @*Tabla de clientes con mayor volumen*@
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id Cliente</th>
+                            <th scope="col">Suma créditos</th>
+                            <th scope="col">Suma débitos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">128</th>
+                            <td>$4000</td>
+                            <td>$3500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">215</th>
+                            <td>$3800</td>
+                            <td>$1850</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">223</th>
+                            <td>$3550</td>
+                            <td>$2200</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+

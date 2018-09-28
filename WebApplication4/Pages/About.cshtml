@@ -1,0 +1,38 @@
+﻿@page
+@model AboutModel
+@{
+    ViewData["Title"] = "Portal cliente";
+}
+
+@*Navegación*@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="/Index">Inicio sesión</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Portal cliente</li>
+    </ol>
+</nav>
+
+<h2>@ViewData["Title"]</h2>
+
+@*Botones*@
+<div class="d-flex justify-content-between">
+    <a class="btn btn-primary btn-lg btn-block" asp-page="/Privacy" tabindex="-1" role="button">Estados de cuenta recientes</a>
+    <a class="btn btn-primary btn-lg btn-block" asp-page="/InfoCliente" tabindex="-1" role="button">Información actual</a>
+</div>
+
+
+
+    @*
+        IGNORAR POR AHORA
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link" id="nav-recientes-tab" data-toggle="tab" href="#nav-recientes" role="tab" aria-controls="nav-recientes" aria-selected="true">Estados de cuenta recientes</a>
+                <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">Información cliente</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-recientes" role="tabpanel" aria-labelledby="nav-recientes-tab">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consequat pretium turpis malesuada ornare. Sed facilisis enim eu vestibulum placerat. Praesent tempus quam eget neque ultricies ullamcorper. Cras nec rutrum arcu, non ornare felis. Maecenas ac tincidunt urna, eu sodales erat. Cras lacus est, finibus vel dapibus eu, porttitor eu leo. Mauris ullamcorper placerat ex, id dapibus ante vulputate at. Sed pellentesque vel lectus ut suscipit. Vivamus faucibus dignissim placerat. Aliquam erat volutpat. Donec vitae ligula eget leo facilisis tempor. Praesent et lobortis est, ut facilisis velit. Vestibulum condimentum auctor scelerisque. Sed tempus ornare orci, nec hendrerit turpis ultricies at.</div>
+            <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">Phasellus a metus in magna pharetra semper sed sit amet velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque cursus enim condimentum justo ornare, quis vulputate est ultrices. Vestibulum vel leo sit amet arcu rhoncus bibendum. Praesent volutpat tincidunt risus. Aenean sit amet fermentum massa, at efficitur dolor. Nulla sed posuere eros. Nam metus ante, lobortis ut lorem vitae, finibus imperdiet nibh.</div>
+        </div>*@
+
+

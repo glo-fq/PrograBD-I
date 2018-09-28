@@ -1,0 +1,208 @@
+﻿@page
+@model WebApplication4.Pages.ImpersonarClienteModel
+@{
+    ViewData["Title"] = "Impersonar Cliente";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@*Navegación*@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="/Index">Inicio sesión</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Contact">Portal admin</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Impersonar cliente</li>
+    </ol>
+</nav>
+
+<h2>@ViewData["Title"]</h2>
+
+@*Búsqueda cliente por identificación*@
+<form class="form-inline">
+    <div class="form-group">
+        <input class="form-control" type="search" placeholder="identificación cliente" aria-label="Search" />
+        <button class="btn btn-success btn-outline" type="submit">Buscar</button>
+    </div>
+</form>
+
+@*Acordeon impersonar cliente*@
+<div class="accordion" id="accordionImpersonar">
+    @*Estados de cuenta recientes*@
+    <div class="card">
+        <div class="card-header" id="headingEstadosRecientes">
+            <h5 class="mb-0">
+                <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseEstadosRecientes" aria-expanded="false" aria-controls="collapseEstadosRecientes">
+                    Estados de cuenta recientes
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseEstadosRecientes" class="collapse" aria-labelledby="headingEstadosRecientes" data-parent="#accordionImpersonar">
+            <div class="card-body">
+                @*Tabla info estados recientes AUN SIN INFO VERDADERA*@
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Tasa interés anual</th>
+                            <th scope="col">Saldo mínimo</th>
+                            <th scope="col">Multa saldo mínimo</th>
+                            <th scope="col">Multa saldo negativo</th>
+                            <th scope="col">Cargo Servicio Mensual</th>
+                            <th scope="col">Cant Max Op Manual</th>
+                            <th scope="col">Cant Max Op ATM</th>
+                            <th scope="col">Multa Op Manual</th>
+                            <th scope="col">Multa Op ATM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Tipo #1</th>
+                            <td>11</td>
+                            <td>$9000</td>
+                            <td>$100</td>
+                            <td>$100</td>
+                            <td>$3500</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>$100</td>
+                            <td>$100</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tipo #2</th>
+                            <td>11</td>
+                            <td>$8500</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$3000</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>$80</td>
+                            <td>$80</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tipo #3</th>
+                            <td>15</td>
+                            <td>$9750</td>
+                            <td>$150</td>
+                            <td>$150</td>
+                            <td>$3250</td>
+                            <td>8</td>
+                            <td>10</td>
+                            <td>$120</td>
+                            <td>$120</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @*Información actual*@
+    <div class="card">
+        <div class="card-header" id="headingInfoActual">
+            <h5 class="mb-0">
+                <button class="btn btn-primary btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseInfoActual" aria-expanded="false" aria-controls="collapseInfoActual">
+                    Información actual del cliente
+                </button>
+            </h5>
+        </div>
+        <div id="collapseInfoActual" class="collapse" aria-labelledby="headingInfoActual" data-parent="#accordionImpersonar">
+            <div class="card-body">
+                
+                @*Acordeon opciones para informacion actual*@
+                <div id="accordionOpcionesInfoActual">
+                    
+                    @*Opcion información cliente*@
+                    <div class="card">
+                        <div class="card-header" id="headingInfoCliente">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseInfoCliente" aria-expanded="true" aria-controls="collapseInfoCliente">
+                                    Información cliente
+                                </button>
+                            </h5>
+                        </div>
+                        
+                        <div id="collapseInfoCliente" class="collapse" aria-labelledby="headingInfoCliente" data-parent="#accordionOpcionesInfoActual">
+                            <div class="card-body">
+                                @*Lista con la información del cliente*@
+                                <div class="list-group">
+                                    <a class="list-group-item list-group-item-action active">Datos</a>
+                                    <a class="list-group-item list-group-item-action">
+                                        Saldo actual:
+                                        <p class="text-right">$520.35</p>
+                                    </a>
+                                    <a class="list-group-item list-group-item-action">
+                                        Intereses acumulados:
+                                        <p class="text-right">$20.50</p>
+                                    </a>
+                                    <a class="list-group-item list-group-item-action">
+                                        Día de corte:
+                                        <p class="text-right">20 de cada mes</p>
+                                    </a>
+                                    <a class="list-group-item list-group-item-action">
+                                        Fecha creación:
+                                        <p class="text-right">20/2/2018</p>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Opcion movimientos actuales*@
+                    <div class="card">
+                        <div class="card-header" id="headingMovimientosCliente">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseMovimientosCliente" aria-expanded="false" aria-controls="collapseMovimientosCliente">
+                                    Movimientos cliente
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseMovimientosCliente" class="collapse" aria-labelledby="headingMovimientosCliente" data-parent="#accordionOpcionesInfoActual">
+                            <div class="card-body">
+                                @*Tabla info movimientos*@
+                                <table id="tablaMovimientosCliente" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Tipo Movimiento</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Monto</th>
+                                            <th scope="col">Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Compras</th>
+                                            <td>3/9/2018</td>
+                                            <td>-$500</td>
+                                            <td>Compra tienda en línea</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Compras</th>
+                                            <td>3/9/2018</td>
+                                            <td>-$200</td>
+                                            <td>Compra restaurante comida peruana</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Depósito manual</th>
+                                            <td>5/9/2018</td>
+                                            <td>+$100</td>
+                                            <td>Depósito manual</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

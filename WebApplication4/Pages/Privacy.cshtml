@@ -1,0 +1,62 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Estados de cuenta recientes";
+}
+
+ @*Navegador*@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="/Index">Inicio sesión</a></li>
+        <li class="breadcrumb-item"><a asp-page="/About">Portal cliente</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Estados de cuenta recientes</li>
+    </ol>
+</nav>
+
+<h2>@ViewData["Title"]</h2>
+
+@*Tabla estados de cuenta recientes*@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id Cuenta</th>
+            <th scope="col">Fecha Corte</th>
+            <th scope="col">Saldo incial</th>
+            <th scope="col">Saldo final</th>
+            <th scope="col">Cant op. manuales</th>
+            <th scope="col">Cant op. ATM</th>
+            <th scope="col">Saldo mín</th>|
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">331</th>
+            <td>22/01/2018</td>
+            <td>$8000</td>
+            <td>$6500</td>
+            <td>3</td>
+            <td>5</td>
+            <td>$6550</td>
+        </tr>
+        <tr>
+            <th scope="row">276</th>
+            <td>22/02/2018</td>
+            <td>$6500</td>
+            <td>$6750</td>
+            <td>2</td>
+            <td>4</td>
+            <td>$6450</td>
+        </tr>
+        <tr>
+            <th scope="row">802</th>
+            <td>22/03/2018</td>
+            <td>$9000</td>
+            <td>$8500</td>
+            <td>3</td>
+            <td>2</td>
+            <td>$5550</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Cliente estados de cuenta recientes</p>

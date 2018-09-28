@@ -1,0 +1,21 @@
+﻿@page
+@model ContactModel
+@{
+    ViewData["Title"] = "Portal admin";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="/Index">Inicio sesión</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Portal admin</li>
+    </ol>
+</nav>
+
+<h2>@ViewData["Title"]</h2>
+
+@*Botones opciones de menu admin*@
+<div class="d-flex justify-content-between">
+    <a class="btn btn-primary btn-lg btn-block" asp-page="/AdminEditar" tabindex="-1" role="button">Editar</a>
+    <a class="btn btn-primary btn-lg btn-block" asp-page="/ImpersonarCliente" tabindex="-1" role="button">Impersonar cliente</a>
+    <a class="btn btn-primary btn-lg btn-block" asp-page="/ConsultasAdmin" tabindex="-1" role="button">Otras consultas</a>
+</div>
