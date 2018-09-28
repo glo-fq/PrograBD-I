@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApplication4.Logica {
-    public class Cliente:Usuario {
+    public class Cliente {
         private int id;
         private string nombre;
         private string clave;
