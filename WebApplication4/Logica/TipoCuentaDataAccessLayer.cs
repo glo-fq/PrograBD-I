@@ -11,7 +11,7 @@ namespace WebApplication4.Logica {
         public IEnumerable<TipoCuenta> GetAllTiposCuenta() {
             List<TipoCuenta> listaTiposCuenta = new List<TipoCuenta>();
             using (SqlConnection con = new SqlConnection(connectionString)) {
-                SqlCommand cmd = new SqlCommand("GetTiposCuenta", con);
+                SqlCommand cmd = new SqlCommand("CASP_GetTiposCuenta", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 con.Open();
@@ -30,7 +30,7 @@ namespace WebApplication4.Logica {
         //Agregar un tipo de cuenta
         public void AddTipoCuenta(TipoCuenta pTipoCuenta) {
             using (SqlConnection con = new SqlConnection(connectionString)) {
-                SqlCommand cmd = new SqlCommand("AgregarTipoCuenta", con);
+                SqlCommand cmd = new SqlCommand("CASP_AgregarTipoCuenta", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@id", pTipoCuenta.Id);
@@ -44,6 +44,21 @@ namespace WebApplication4.Logica {
                 cmd.Parameters.AddWithValue("@cantMaxOpATM", pTipoCuenta.CantMaxOpATM);
                 cmd.Parameters.AddWithValue("@multaOpManual", pTipoCuenta.MultaOpManual);
                 cmd.Parameters.AddWithValue("@multaOpATM", pTipoCuenta.MultaOpATM);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        //Eliminar un tipo de cuenta
+        public void EliminarTipoCuenta(TipoCuenta pTipoCuenta) {
+            using (SqlConnection con = new SqlConnection(connectionString)) {
+                SqlCommand cmd = new SqlCommand("CASP_EliminarTipoCuenta", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@idTipoCuenta", pTipoCuenta.Id);
+                
 
                 con.Open();
                 cmd.ExecuteNonQuery();

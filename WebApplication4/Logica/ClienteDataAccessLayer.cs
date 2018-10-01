@@ -11,7 +11,7 @@ namespace WebApplication4.Logica {
             List<Cliente> listaClientes = new List<Cliente>();
 
             using (SqlConnection con = new SqlConnection(connectionString)) {
-                SqlCommand cmd = new SqlCommand("GetClientes", con);
+                SqlCommand cmd = new SqlCommand("CASP_GetClientes", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 con.Open();
