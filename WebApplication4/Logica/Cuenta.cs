@@ -6,34 +6,37 @@ using System.Threading.Tasks;
 namespace WebApplication4.Logica {
     public class Cuenta {
         private int idCuenta;
+        private int idCliente;
         private decimal saldo;
         private decimal interesesAcumulados;
-        private int diaCorte;
-        private string fechaCreacion;
-        private string tipoCuenta;
+        //private int diaCorte;
+        private DateTime fechaCreacion;
+        private int idTipoCuenta;
 
-        public string FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
-        public string TipoCuenta { get => tipoCuenta; set => tipoCuenta = value; }
-        public int DiaCorte { get => diaCorte; set => diaCorte = value; }
+        public DateTime FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
+        public int IdTipoCuenta { get => idTipoCuenta; set => idTipoCuenta = value; }
+        //public int DiaCorte { get => diaCorte; set => diaCorte = value; }
         public decimal InteresesAcumulados { get => interesesAcumulados; set => interesesAcumulados = value; }
         public decimal Saldo { get => saldo; set => saldo = value; }
         public int IdCuenta { get => idCuenta; set => idCuenta = value; }
+        public int IdCliente { get => idCliente; set => idCliente = value; }
 
-        Cuenta() {
+        public Cuenta() {
             IdCuenta = 0;
+            IdCliente = 0;
             Saldo = 0;
             InteresesAcumulados = 0;
-            DiaCorte = 0;
-            FechaCreacion = "";
-            TipoCuenta = "";
+            FechaCreacion = new DateTime(1970, 1, 1); //Se pone un valor por defecto
+            idTipoCuenta = 0;
         }
 
-        Cuenta(int pIdCuenta, decimal pSaldo, decimal pIntAcum, int pDiaCorte, string pFechaCreacion) {
+        public Cuenta(int pIdCuenta, int pIdCliente, decimal pSaldo, decimal pIntAcum, DateTime pFechaCreacion, int pIdTipoCuenta) {
             IdCuenta = pIdCuenta;
+            IdCliente = pIdCliente;
             Saldo = pSaldo;
             InteresesAcumulados = pIntAcum;
-            DiaCorte = pDiaCorte;
             FechaCreacion = pFechaCreacion;
+            IdTipoCuenta = pIdTipoCuenta;
         }
 
 

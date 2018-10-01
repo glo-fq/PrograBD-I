@@ -22,7 +22,7 @@ namespace WebApplication4.Logica {
                 while (rdr.Read()){
                     //En el stored procedure hace falta pedir el Id
                     EstadoCuenta estadoCuenta = new EstadoCuenta(Convert.ToInt32(rdr["idCuenta"]), Convert.ToDateTime(rdr["fechaCorte"]), Convert.ToDecimal(rdr["saldoInicial"]), Convert.ToDecimal(rdr["saldoFinal"]), Convert.ToInt32(rdr["cantOpManual"]), Convert.ToInt32(rdr["cantOpATM"]), Convert.ToDecimal(rdr["saldoMin"]));
-
+                    
                     listaEstadosCuenta.Add(estadoCuenta);
                 }
                 con.Close();
