@@ -7,6 +7,7 @@ namespace WebApplication4.Logica {
     public class CuentaDataAccessLayer {
         string connectionString = "Persist Security Info=False;Integrated Security = SSPI;database=BDProgra;server=LAPTOP-O7727F54\\SQLEXPRESS01";
 
+        //Get de todas las cuentas activas
         public IEnumerable<Cuenta> GetAllCuentas() {
             List<Cuenta> listaCuentas = new List<Cuenta>();
             using (SqlConnection con = new SqlConnection(connectionString)) {
