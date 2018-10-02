@@ -20,7 +20,7 @@ namespace WebApplication4.Logica {
                 while (rdr.Read()) {
                     Estado estado = new Estado();
 
-                    listaClientes.Add(cliente);
+                    listaEstados.Add(estado);
                 }
                 con.Close();
             }
