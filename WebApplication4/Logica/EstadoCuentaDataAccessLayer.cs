@@ -11,7 +11,7 @@ namespace WebApplication4.Logica {
         public IEnumerable<EstadoCuenta> GetEstadosCuenta(int idCuenta) {
             List<EstadoCuenta> listaEstadosCuenta = new List<EstadoCuenta>();
             using (SqlConnection con = new SqlConnection(connectionString)) {
-                SqlCommand cmd = new SqlCommand("GetEstadosCuenta", con);
+                SqlCommand cmd = new SqlCommand("CASP_GetEstadosCuenta", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@codigoCuenta", idCuenta);

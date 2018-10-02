@@ -17,6 +17,10 @@ namespace WebApplication4.Pages {
         TipoCuentaDataAccessLayer objTipoCuenta = new TipoCuentaDataAccessLayer();
         public List<TipoCuenta> tipoCuenta { get; set; }
 
+        //Cuentas
+        CuentaDataAccessLayer objCuenta = new CuentaDataAccessLayer();
+        public List<Cuenta> cuenta { get; set; }
+
         //Modelo tipo de cuenta agreegado para enviar a agregar
         [BindProperty]
         public TipoCuenta tipoCuentaAgregado { get; set; }
@@ -26,6 +30,8 @@ namespace WebApplication4.Pages {
             cliente = objCliente.GetAllClientes().ToList();
 
             tipoCuenta = objTipoCuenta.GetAllTiposCuenta().ToList();
+
+            cuenta = objCuenta.GetAllCuentas().ToList();
 
         }
 

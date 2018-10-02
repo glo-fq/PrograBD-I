@@ -4,12 +4,7 @@
 
     ViewData["Title"] = "Editar";
     Layout = "~/Pages/Shared/_Layout.cshtml";
-
-    //Datos cuentas (datos temporales para mostrar algo en las tablas):
-    //ID cuenta, saldo, intereses acumulados, dia de corte, fecha creacion, tipo cuenta
-    string[] datosCuenta1 = { "331", "$3800", "$100", "22", "22/12/17", "Tipo #1" };
-    string[] datosCuenta2 = { "116", "$5800", "$80", "8", "8/1/18", "Tipo #2" };
-    string[] datosCuenta3 = { "218", "$8900", "$160", "14", "14/1/18", "Tipo #1" };
+    
 }
 
 @*Navegador*@
@@ -41,7 +36,8 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Tipo</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
                             <th scope="col">Tasa interés anual</th>
                             <th scope="col">Saldo mínimo</th>
                             <th scope="col">Multa saldo mínimo</th>
@@ -56,6 +52,9 @@
                     <tbody>
                         @foreach (var item in Model.tipoCuenta) {
                         <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Nombre)
                             </td>
@@ -356,33 +355,38 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">ID Cuenta</th>
                             <th scope="col">ID Cliente</th>
                             <th scope="col">Saldo</th>
                             <th scope="col">Intereses acumulados</th>
-                            <th scope="col">Día corte</th>
                             <th scope="col">Fecha creación</th>
-                            <th scope="col">Tipo cuenta</th>
+                            <th scope="col">Id tipo cuenta</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (var item in Model.cuenta) {
                         <tr>
-                            @foreach (var dato in datosCuenta1)
-                            {
-                                <td>@dato</td>
-                            }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdCuenta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdCliente)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Saldo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InteresesAcumulados)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaCreacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdTipoCuenta)
+                            </td>
+
                         </tr>
-                        <tr>
-                            @foreach (var dato in datosCuenta2)
-                            {
-                                <td>@dato</td>
-                            }
-                        </tr>
-                        <tr>
-                            @foreach (var dato in datosCuenta3)
-                            {
-                                <td>@dato</td>
-                            }
-                        </tr>
+                        }
                     </tbody>
                 </table>
 
