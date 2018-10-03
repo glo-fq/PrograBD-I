@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebApplication4.Logica {
-    public class Estado {
+    public class Evento {
         private int id;
         private int idAdmin;
         private int idTipoEvento;
@@ -14,7 +14,7 @@ namespace WebApplication4.Logica {
         private string valorDespues;
         private int idEntidad;
 
-        public Estado() {
+        public Evento() {
             Id = 0;
             IdAdmin = 0;
             IdTipoEvento = 0;
@@ -25,7 +25,7 @@ namespace WebApplication4.Logica {
             IdEntidad = 0;
         }
 
-        public Estado(int pId, int pIdAdmin, int pIdTipoEvento, string pDireccionIP, DateTime pTimeStamp, string pValorAntes, string pValorDespues, int pIdEntidad) {
+        public Evento(int pId, int pIdAdmin, int pIdTipoEvento, string pDireccionIP, DateTime pTimeStamp, string pValorAntes, string pValorDespues, int pIdEntidad) {
             Id = pId;
             IdAdmin = pIdAdmin;
             IdTipoEvento = pIdTipoEvento;

@@ -21,6 +21,10 @@ namespace WebApplication4.Pages {
         CuentaDataAccessLayer objCuenta = new CuentaDataAccessLayer();
         public List<Cuenta> cuenta { get; set; }
 
+        //Eventos
+        EventoDataAccessLayer objEvento = new EventoDataAccessLayer();
+        public List<Evento> evento { get; set; }
+
         //Modelo tipo de cuenta agreegado para enviar a agregar
         [BindProperty]
         public TipoCuenta tipoCuentaAgregado { get; set; }
@@ -32,6 +36,8 @@ namespace WebApplication4.Pages {
             tipoCuenta = objTipoCuenta.GetAllTiposCuenta().ToList();
 
             cuenta = objCuenta.GetAllCuentas().ToList();
+
+            evento = objEvento.GetAllEventos().ToList();
 
         }
 

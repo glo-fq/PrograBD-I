@@ -27,6 +27,23 @@ namespace WebApplication4.Logica {
             return listaClientes;
         }
 
+        public void EditarCliente(Cliente pCliente, Administrador pAdministrador) {
+            using (SqlConnection con = new SqlConnection(connectionString)) {
+                SqlCommand cmd = new SqlCommand("CASP_ModificarCliente", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read()) {
+
+                }
+            }
+
+        }
+
+        public void 
+
         public bool VerificarCredencialesAdmin(string pNombre, string pClave) {
             int valorVerificacion = 2; //Se le pone un valor que no sea 1 o -1 para no confundir con lo que se recibe
             using (SqlConnection con = new SqlConnection(connectionString)) {

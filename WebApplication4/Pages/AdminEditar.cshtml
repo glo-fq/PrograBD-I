@@ -499,39 +499,42 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Tipo</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Id Tipo Evento</th>
                             <th scope="col">Valor antes</th>
                             <th scope="col">Valor después</th>
                             <th scope="col">IP</th>
                             <th scope="col">Timestamp</th>
-                            <th scope="col">Usuario</th>
+                            <th scope="col">Id Admin</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (var item in Model.evento) {
                         <tr>
-                            <th scope="row">Agregar tipo de cuenta</th>
-                            <td>-</td>
-                            <td>Cuenta ahorros</td>
-                            <td>1.0.0</td>
-                            <td>2/1/2018 22:30:25</td>
-                            <td>admin</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdTipoEvento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ValorAntes)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ValorDespues)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DireccionIP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeStamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdAdmin)
+                            </td>
+
                         </tr>
-                        <tr>
-                            <th scope="row">Eliminar tipo de cuenta</th>
-                            <td>Cuenta cliente</td>
-                            <td>-</td>
-                            <td>127.0.0</td>
-                            <td>1/1/2018 16:00:45</td>
-                            <td>andreslopez</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Cambiar identificación usuario</th>
-                            <td>danieeldiaz</td>
-                            <td>danieldiaz</td>
-                            <td>127.0.0</td>
-                            <td>1/1/2018 14:12:22</td>
-                            <td>andreslopez</td>
-                        </tr>
+                        }
                     </tbody>
                 </table>
             </div>

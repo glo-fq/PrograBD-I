@@ -8,8 +8,8 @@ namespace WebApplication4.Logica {
         string connectionString = "Persist Security Info=False;Integrated Security = SSPI;database=BDProgra;server=LAPTOP-O7727F54\\SQLEXPRESS01";
 
         //Get todos los estados
-        public IEnumerable<Estado> GetAllEstados() {
-            List<Estado> listaEstados = new List<Estado>();
+        public IEnumerable<Evento> GetAllEstados() {
+            List<Evento> listaEstados = new List<Evento>();
             using (SqlConnection con = new SqlConnection(connectionString)) {
                 SqlCommand cmd = new SqlCommand("CASP_GetEstados", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -18,7 +18,7 @@ namespace WebApplication4.Logica {
                 SqlDataReader rdr = cmd.ExecuteReader();
 
                 while (rdr.Read()) {
-                    Estado estado = new Estado();
+                    Evento estado = new Evento();
 
                     listaEstados.Add(estado);
                 }
