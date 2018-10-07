@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 namespace WebApplication4.Logica {
     public class Movimiento {
         private int idCuenta;
-        private string tipoMovimiento;
+        private int idTipoMovimiento;
         private int idEstadoCuenta;
-        private string fecha;
+        private DateTime fecha;
         private decimal monto;
         private string descripcion;
 
         public Movimiento() {
             idCuenta = 0;
-            tipoMovimiento = "";
+            idTipoMovimiento = 0;
             idEstadoCuenta = 0;
-            fecha = "";
+            fecha = new DateTime(1970, 1, 1); //Se pone un valor por defecto
             monto = 0;
             descripcion = "";
         }
 
-        public Movimiento(int pIdCuenta, string pTipoMovimiento, int pIdEstadoCuenta, string pFecha, decimal pMonto, string pDescripcion) {
+        public Movimiento(int pIdCuenta, int pIdTipoMovimiento, int pIdEstadoCuenta, DateTime pFecha, decimal pMonto, string pDescripcion) {
             idCuenta = pIdCuenta;
-            tipoMovimiento = pTipoMovimiento;
+            idTipoMovimiento = pIdTipoMovimiento;
             idEstadoCuenta = pIdEstadoCuenta;
             fecha = pFecha;
             monto = pMonto;
@@ -31,9 +31,9 @@ namespace WebApplication4.Logica {
         }
 
         public int IdCuenta { get => idCuenta; set => idCuenta = value; }
-        public string TipoMovimiento { get => tipoMovimiento; set => tipoMovimiento = value; }
+        public int IdTipoMovimiento { get => idTipoMovimiento; set => idTipoMovimiento = value; }
         public int IdEstadoCuenta { get => idEstadoCuenta; set => idEstadoCuenta = value; }
-        public string Fecha { get => fecha; set => fecha = value; }
+        public DateTime Fecha { get => fecha; set => fecha = value; }
         public decimal Monto { get => monto; set => monto = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
 
