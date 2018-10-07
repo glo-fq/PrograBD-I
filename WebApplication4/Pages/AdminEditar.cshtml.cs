@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApplication4.Logica;
+using WebApplication4.Controllers;
 
 namespace WebApplication4.Pages {
     public class AdminEditarModel : PageModel {

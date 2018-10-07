@@ -1,9 +1,6 @@
 ﻿@page
 @model IndexModel
 @{
-    @*@using WebApplication4.Logica;
-    ClienteDataAccessLayer clientesDAL = new ClienteDataAccessLayer();
-    List < Cliente > clientes = clientesDAL.GetAllClientes();*@
 
 
     ViewData["Title"] = "Inicio de sesión";
@@ -20,14 +17,14 @@
 <div class="login">
     <div class="form">
         <form class="login-form">
-            <input type="text" placeholder="identificación" name="uname" required />
-            <input type="password" placeholder="clave" name="psw" required />
-            <button id="btnLogin" type="submit">iniciar sesión</button>
-            <button id="btnClientes" asp-page="/About">Cliente</button>
-            <button id="btnAdmin" asp-page="/Contact">Admin</button>
+            <input type="text" placeholder="identificación" asp-for="usuario.Nombre" name="username" required />
+            <input type="password" placeholder="clave" asp-for="usuario.Clave" name="pass" required />
+            <button id="btnClientes" asp-page-handler="Cliente" asp-page="/About">Cliente</button>
+            <button id="btnAdmin" asp-page-handler="Admin" asp-page="/Contact">Admin</button>
 
         </form>
     </div>
+    @*<p class="text-center">@Html.DisplayFor(modelItem => )</p>*@
 </div>
 
 

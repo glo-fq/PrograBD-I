@@ -17,9 +17,10 @@
 <h2>@ViewData["Title"]</h2>
 
 @*Búsqueda cliente por identificación*@
-<form class="form-inline">
+<form class="form-inline" method="post">
     <div class="form-group">
-        <input class="form-control" type="search" placeholder="identificación cliente" aria-label="Search" />
+        <input asp-for="cliente.Id" class="form-control" type="search" placeholder="identificación cliente" name="identificacion" aria-label="Search" />
+        <span asp-validation-for="cliente.Id" class="text-danger"></span>
         <button class="btn btn-success btn-outline" type="submit">Buscar</button>
     </div>
 </form>
@@ -42,55 +43,41 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Tasa interés anual</th>
+                            <th scope="col">Id Cuenta</th>
+                            <th scope="col">Fecha corte</th>
+                            <th scope="col">Saldo inicial</th>
+                            <th scope="col">Saldo final</th>
+                            <th scope="col">Cant Op Manual</th>
+                            <th scope="col">Cant Op ATM</th>
                             <th scope="col">Saldo mínimo</th>
-                            <th scope="col">Multa saldo mínimo</th>
-                            <th scope="col">Multa saldo negativo</th>
-                            <th scope="col">Cargo Servicio Mensual</th>
-                            <th scope="col">Cant Max Op Manual</th>
-                            <th scope="col">Cant Max Op ATM</th>
-                            <th scope="col">Multa Op Manual</th>
-                            <th scope="col">Multa Op ATM</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (var item in Model.listaEstadosCuenta){
                         <tr>
-                            <th scope="row">Tipo #1</th>
-                            <td>11</td>
-                            <td>$9000</td>
-                            <td>$100</td>
-                            <td>$100</td>
-                            <td>$3500</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>$100</td>
-                            <td>$100</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdCuenta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaCorte)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SaldoInicial)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SaldoFinal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CantOpMaxManual)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CantOpMaxATM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SaldoMinimo)
+                            </td>
                         </tr>
-                        <tr>
-                            <th scope="row">Tipo #2</th>
-                            <td>11</td>
-                            <td>$8500</td>
-                            <td>$150</td>
-                            <td>$150</td>
-                            <td>$3000</td>
-                            <td>12</td>
-                            <td>12</td>
-                            <td>$80</td>
-                            <td>$80</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Tipo #3</th>
-                            <td>15</td>
-                            <td>$9750</td>
-                            <td>$150</td>
-                            <td>$150</td>
-                            <td>$3250</td>
-                            <td>8</td>
-                            <td>10</td>
-                            <td>$120</td>
-                            <td>$120</td>
-                        </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -129,19 +116,15 @@
                                     <a class="list-group-item list-group-item-action active">Datos</a>
                                     <a class="list-group-item list-group-item-action">
                                         Saldo actual:
-                                        <p class="text-right">$520.35</p>
+                                        <p class="text-right">@Html.DisplayFor(modelItem => Model.cuenta.Saldo)</p>
                                     </a>
                                     <a class="list-group-item list-group-item-action">
                                         Intereses acumulados:
-                                        <p class="text-right">$20.50</p>
-                                    </a>
-                                    <a class="list-group-item list-group-item-action">
-                                        Día de corte:
-                                        <p class="text-right">20 de cada mes</p>
+                                        <p class="text-right">@Html.DisplayFor(modelItem => Model.cuenta.InteresesAcumulados)</p>
                                     </a>
                                     <a class="list-group-item list-group-item-action">
                                         Fecha creación:
-                                        <p class="text-right">20/2/2018</p>
+                                        <p class="text-right">@Html.DisplayFor(modelItem => Model.cuenta.FechaCreacion)</p>
                                     </a>
 
                                 </div>
@@ -164,31 +147,30 @@
                                 <table id="tablaMovimientosCliente" class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Tipo Movimiento</th>
+                                            <th scope="col">Id Tipo Movimiento</th>
                                             <th scope="col">Fecha</th>
                                             <th scope="col">Monto</th>
                                             <th scope="col">Descripción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach (var item in Model.listaMovimientos) {
                                         <tr>
-                                            <th scope="row">Compras</th>
-                                            <td>3/9/2018</td>
-                                            <td>-$500</td>
-                                            <td>Compra tienda en línea</td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.IdTipoMovimiento)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Fecha)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Monto)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Descripcion)
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">Compras</th>
-                                            <td>3/9/2018</td>
-                                            <td>-$200</td>
-                                            <td>Compra restaurante comida peruana</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Depósito manual</th>
-                                            <td>5/9/2018</td>
-                                            <td>+$100</td>
-                                            <td>Depósito manual</td>
-                                        </tr>
+                                        }
+                                            
                                     </tbody>
                                 </table>
                             </div>
