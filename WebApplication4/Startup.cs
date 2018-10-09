@@ -27,7 +27,7 @@ namespace WebApplication4 {
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddSingleton<AccountController, AccountController>();
+            //services.AddSingleton<AccountController, AccountController>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
